@@ -1,32 +1,61 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "@remix-run/react";
+import { Meta, Links, Outlet } from "@remix-run/react";
+import styles from "./styles/index.css";
 
-export const links = () => [
-  ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-];
-
+export function meta() {
+  return [
+    /**
+     * Para cargar meta de forma global;
+     **/
+    {
+      charset: "utf-8",
+      title: "GuitarLA - REMIX",
+      viewport: "width=device-width,initial-scale=1",
+    },
+  ];
+}
+export function links() {
+  return [
+    /**
+     * Para cargar hoja de estilos global
+     **/
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.googleapis.com",
+    },
+    {
+      rel: "preconnect",
+      href: "https://fonts.gstatic.com",
+      crossOrigin: "true",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+    },
+    {
+      rel: "stylesheet",
+      href: "https://necolas.github.io/normalize.css/8.0.1/normalize.css",
+    },
+  ];
+}
 export default function App() {
   return (
-    <html lang="en">
+    <Document>
+      <Outlet />
+    </Document>
+  );
+}
+function Document({ children }) {
+  return (
+    <html lang="es">
       <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
