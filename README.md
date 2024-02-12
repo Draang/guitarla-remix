@@ -1,7 +1,10 @@
-# Welcome to Remix!
+# Proyecto GuitarLA con Remix 
 
 - [Remix Docs](https://remix.run/docs)
 
+## Tecnologias:
+* Stripi / cloudinary
+* Remix 
 ## Development
 
 From your terminal:
