@@ -10,7 +10,7 @@ export async function loader({ params }) {
   if (post.length === 0) {
     throw new Response("", {
       status: 404,
-      statusText: "Guitarra no encontrada",
+      statusText: "Blog no encontrado",
     });
   }
   return post;
