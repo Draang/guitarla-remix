@@ -5,9 +5,23 @@ import styles from "../styles/guitarras.css";
 export async function loader({ params }) {
   const { url } = params;
   const guitarra = await getGuitarra(url);
+
+  if (guitarra.length === 0) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Guitarra no encontrada",
+    });
+  }
   return guitarra;
 }
 export function meta({ data }) {
+  if (!data) {
+    return [
+      {
+        title: `GuitarLA - ERROR `,
+      },
+    ];
+  }
   return [
     {
       title: `GuitarLA - ${data[0].attributes.nombre}`,
