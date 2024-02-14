@@ -13,7 +13,7 @@ export default function Navegacion() {
         Nosotros
       </Link>
       <Link
-        to="/tienda"
+        to="/guitarras"
         className={location.pathname === "/tienda" ? "active" : ""}
       >
         Tienda
@@ -21,7 +21,7 @@ export default function Navegacion() {
       <Link
         to="/blog"
         className={location.pathname === "/blog" ? "active" : ""}
-      >
+      >  
         Blog
       </Link>
     </nav>

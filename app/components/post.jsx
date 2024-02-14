@@ -11,7 +11,7 @@ export default function Post({ post }) {
         <h3>{titulo}</h3>
         <p className="fecha">{formatDate(publishedAt)}</p>
         <p className="resumen">{contenido}</p>
-        <Link className="enlace" to={`/post/${url}`}>
+        <Link className="enlace" to={`/blog/${url}`}>
           Leer Mas
         </Link>
       </div>
