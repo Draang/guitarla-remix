@@ -29,14 +29,14 @@ export default function Nosotros() {
             Sed eget velit ligula. Fusce posuere, ligula in sodales hendrerit,
             metus sem tincidunt est, eget lacinia ante mi a augue. Etiam vitae
             nunc sem. Nunc a magna et quam sollicitudin vestibulum ac ut enim.
-            Nullam non facilisis quam, 
+            Nullam non facilisis quam,
           </p>
           <p>
             Pellentesque id semper nunc. Aliquam sed odio elit. Vestibulum
             lectus justo, tincidunt non est mollis, facilisis congue felis.
             Nulla facilisi. Integer varius felis id sapien dignissim, sit amet
             posuere nisl dictum. Proin in metus molestie, vestibulum massa a,
-            feugiat eros. Mauris at pulvinar tortor. 
+            feugiat eros. Mauris at pulvinar tortor.
           </p>
         </div>
       </div>

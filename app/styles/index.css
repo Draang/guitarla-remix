@@ -2,7 +2,7 @@
   --primary: #e99401;
   --black: #262626;
   --white: #fff;
-  --fuente-principal: "Outfit", sans-serif;
+  --fuente-principal: "Poppins", sans-serif;
 }
 html {
   font-size: 62.5%;
@@ -62,6 +62,7 @@ main {
   display: flex;
   gap: 2rem;
   margin-top: 5rem;
+  align-items: center;
 }
 .header .navegacion a {
   color: var(--white);
@@ -81,6 +82,9 @@ main {
 .header .navegacion a:hover,
 .header .active {
   background-color: var(--primary);
+}
+.header .navegacion img {
+  width: 3rem;
 }
 /* ***FOOTER*** */
 .footer {
@@ -116,12 +120,17 @@ main {
   text-align: center;
   font-size: 1.5rem;
 }
-.error,.error-enlace{
+.footer .navegacion a:last-of-type {
+  display: none;
+}
+
+.error,
+.error-enlace {
   font-size: 2rem;
   text-align: center;
   margin-top: 5rem;
 }
-.error-enlace{
+.error-enlace {
   display: block;
 }
 .enlace {

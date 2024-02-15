@@ -11,6 +11,7 @@ import {
 import styles from "./styles/index.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import { useEffect, useState } from "react";
 export function meta() {
   return [
     /**
@@ -52,9 +53,52 @@ export function links() {
   ];
 }
 export default function App() {
+  const carritoLS =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("carrito")) ?? []
+      : null;
+  const [carrito, setCarrito] = useState(carritoLS);
+
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
+
+  const agregarCarrito = (guitarra) => {
+    if (carrito.some((guitarraState) => guitarraState.id === guitarra.id)) {
+      const carritoNuevo = carrito.map((guitarraState) =>
+        guitarraState.id === guitarra.id ? guitarra : guitarraState
+      );
+      setCarrito([carritoNuevo]);
+    } else {
+      setCarrito([...carrito, guitarra]);
+    }
+  };
+
+  const actualizarCantidad = (guitarra) => {
+    const carritoActualizado = carrito.map((guitarraState) => {
+      if (guitarra.id === guitarraState.id) {
+        guitarraState.cantidad = guitarra.cantidad;
+      }
+      return guitarraState;
+    });
+    setCarrito(carritoActualizado);
+  };
+
+  const eliminarGuitarra = (id) => {
+    const carritoActualizado = carrito.filter((guitarra) => guitarra.id != id);
+    setCarrito(carritoActualizado);
+  };
+
   return (
     <Document>
-      <Outlet />
+      <Outlet
+        context={{
+          agregarCarrito,
+          actualizarCantidad,
+          eliminarGuitarra,
+          carrito,
+        }}
+      />
     </Document>
   );
 }
@@ -85,7 +129,9 @@ export function ErrorBoundary() {
         <p className="error">
           Status: {error.status} {error.statusText}
         </p>
-        <Link to="/tienda" className="error-enlace">{"<- Volver a la tienda"}</Link>
+        <Link to="/tienda" className="error-enlace">
+          {"<- Volver a la tienda"}
+        </Link>
       </Document>
     );
   }

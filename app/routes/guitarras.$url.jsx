@@ -1,4 +1,5 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useOutletContext } from "@remix-run/react";
+import { useState } from "react";
 import { getGuitarra } from "../models/guitarras.server";
 import styles from "../styles/guitarras.css";
 
@@ -38,8 +39,27 @@ export function links() {
   ];
 }
 export default function Guitarra() {
+  const [cantidad, setCantidad] = useState(0);
   const guitarra = useLoaderData();
-  const { nombre, desc, precio, url, imagen } = guitarra[0].attributes;
+  const { agregarCarrito } = useOutletContext();
+
+  const { nombre, desc, precio, imagen } = guitarra[0].attributes;
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (cantidad >= 1) {
+      const guitarraSeleccionada = {
+        id: guitarra[0].id,
+        imagen: imagen.data.attributes.url,
+        cantidad,
+        nombre,
+        precio,
+      };
+      agregarCarrito(guitarraSeleccionada);
+    } else {
+      alert("Debes seleccionar una cantidad");
+      return;
+    }
+  }
   return (
     <main className="contenedor guitarra">
       <img src={imagen.data.attributes.url} alt={nombre} className="imagen" />
@@ -47,6 +67,26 @@ export default function Guitarra() {
         <h3>{nombre}</h3>
         <p className="texto">{desc}</p>
         <p className="precio">${precio}</p>
+
+        <form className="formulario" onSubmit={handleSubmit}>
+          <label htmlFor="cantidad">Cantidad:</label>
+
+          <select
+            name="cantidad"
+            id="cantidad"
+            value={cantidad}
+            onChange={(e) => setCantidad(parseInt(e.target.value))}
+          >
+            <option value="">--Seleccione-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
+          <input type="submit" value="Agregar al carrito" />
+        </form>
       </div>
     </main>
   );
