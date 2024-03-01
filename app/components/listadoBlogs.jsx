@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import Post from "./post";
 
 export default function ListadoBlogs({ posts }) {
@@ -10,4 +11,11 @@ export default function ListadoBlogs({ posts }) {
       </div>
     </>
   );
+}
+
+ListadoBlogs.propTypes = {
+  posts: PropTypes.shape({
+    length: PropTypes.func,
+    map: PropTypes.func
+  })
 }

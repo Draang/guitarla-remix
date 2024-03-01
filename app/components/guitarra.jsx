@@ -1,13 +1,11 @@
+import PropTypes from "prop-types"
 import { Link } from "@remix-run/react";
 export default function Guitarra({ guitarra }) {
   const {
-    createdAt,
     desc,
     imagen,
     nombre,
     precio,
-    publishedAt,
-    updatedAt,
     url,
   } = guitarra;
   const urlImg = imagen.data.attributes.formats.medium.url;
@@ -24,4 +22,27 @@ export default function Guitarra({ guitarra }) {
       </div>
     </div>
   );
+}
+
+Guitarra.propTypes = {
+  guitarra: PropTypes.shape({
+    createdAt: PropTypes.any,
+    desc: PropTypes.any,
+    imagen: PropTypes.shape({
+      data: PropTypes.shape({
+        attributes: PropTypes.shape({
+          formats: PropTypes.shape({
+            medium: PropTypes.shape({
+              url: PropTypes.any
+            })
+          })
+        })
+      })
+    }),
+    nombre: PropTypes.any,
+    precio: PropTypes.any,
+    publishedAt: PropTypes.any,
+    updatedAt: PropTypes.any,
+    url: PropTypes.any
+  })
 }

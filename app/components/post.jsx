@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { Link } from "@remix-run/react";
 import { formatDate } from "../../utils/helpers";
 
@@ -17,4 +18,24 @@ export default function Post({ post }) {
       </div>
     </article>
   );
+}
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    contenido: PropTypes.any,
+    imagen: PropTypes.shape({
+      data: PropTypes.shape({
+        attributes: PropTypes.shape({
+          formats: PropTypes.shape({
+            small: PropTypes.shape({
+              url: PropTypes.any
+            })
+          })
+        })
+      })
+    }),
+    publishedAt: PropTypes.any,
+    titulo: PropTypes.any,
+    url: PropTypes.any
+  })
 }

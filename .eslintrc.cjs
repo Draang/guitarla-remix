@@ -19,6 +19,9 @@ module.exports = {
     commonjs: true,
     es6: true,
   },
+  rules: {
+    "react/no-unknown-property": "off",
+  },
 
   // Base config
   extends: ["eslint:recommended"],

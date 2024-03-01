@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import {
   Meta,
   Links,
@@ -12,6 +13,7 @@ import styles from "./styles/index.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { useEffect, useState } from "react";
+
 export function meta() {
   return [
     /**
@@ -24,6 +26,7 @@ export function meta() {
     },
   ];
 }
+
 export function links() {
   return [
     /**
@@ -52,11 +55,13 @@ export function links() {
     },
   ];
 }
+
 export default function App() {
   const carritoLS =
     typeof window !== "undefined"
       ? JSON.parse(localStorage.getItem("carrito")) ?? []
       : null;
+
   const [carrito, setCarrito] = useState(carritoLS);
 
   useEffect(() => {
@@ -64,14 +69,16 @@ export default function App() {
   }, [carrito]);
 
   const agregarCarrito = (guitarra) => {
+
     if (carrito.some((guitarraState) => guitarraState.id === guitarra.id)) {
       const carritoNuevo = carrito.map((guitarraState) =>
         guitarraState.id === guitarra.id ? guitarra : guitarraState
       );
-      setCarrito([carritoNuevo]);
+      setCarrito(carritoNuevo);
     } else {
       setCarrito([...carrito, guitarra]);
     }
+
   };
 
   const actualizarCantidad = (guitarra) => {
@@ -102,6 +109,7 @@ export default function App() {
     </Document>
   );
 }
+
 function Document({ children }) {
   return (
     <html lang="es">
@@ -119,7 +127,12 @@ function Document({ children }) {
     </html>
   );
 }
-/* Menejo de errores */
+
+Document.propTypes = {
+  children: PropTypes.any
+}
+
+/** Menejo de errores **/
 export function ErrorBoundary() {
   const error = useRouteError();
   if (isRouteErrorResponse(error)) {

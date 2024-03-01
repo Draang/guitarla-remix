@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unknown-property */
+import PropTypes from "prop-types"
 export default function Curso({ curso }) {
   const { contenido, imagen, titulo } = curso;
   return (
@@ -22,4 +24,14 @@ export default function Curso({ curso }) {
       </div>
     </section>
   );
+}
+
+Curso.propTypes = {
+  curso: PropTypes.shape({
+    contenido: PropTypes.any,
+    imagen: PropTypes.shape({
+      data: PropTypes.any
+    }),
+    titulo: PropTypes.any
+  })
 }
